@@ -1,38 +1,43 @@
+import 'dart:math';
+
 import 'package:bonfire/bonfire.dart';
-import 'package:bonfire/tiled/model/tiled_object_properties.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:pacman/enemy/ghost.dart';
+import 'package:pacman/map/map.dart';
 import 'package:pacman/player/pacman.dart';
+import 'package:pacman/player/player_score.dart';
+import 'package:provider/provider.dart';
 
 class Game extends StatelessWidget {
-  const Game({Key? key}) : super(key: key);
+  const Game({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BonfireTiledWidget(
-      joystick: Joystick(
-        // directional: JoystickDirectional(),
-        keyboardConfig: KeyboardConfig(
-          keyboardDirectionalType: KeyboardDirectionalType.wasdAndArrows,
-        ),
-      ), // required
-      map: TiledWorldMap(
-        'pacman/pac_map.json',
-        forceTileSize: Size(10, 10),
-        objectsBuilder: {
-          'red': (TiledObjectProperties properties) => Goblin(properties.position),
-          // 'pacman': (properties) => Pacman(properties.position),
-        },
-      ),
-      player: Pacman(
-        Vector2(30, 30),
-      ),
-      showCollisionArea: true,
-      cameraConfig: CameraConfig(
-          // target: GameComponent(),
-          // smoothCameraEnabled: true,
-          // smoothCameraSpeed: 2,
+    final PlayerScore playerScore = context.watch<PlayerScore>();
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        LabyrinthMap.tileSize = max(constraints.maxHeight, constraints.maxWidth) / (kIsWeb ? 12 : 12);
+        return BonfireTiledWidget(
+          joystick: Joystick(
+            keyboardConfig: KeyboardConfig(
+              keyboardDirectionalType: KeyboardDirectionalType.wasdAndArrows,
+            ),
+          ), // required
+          map: LabyrinthMap.map(),
+          player: Pacman(Vector2(LabyrinthMap.tileSize * 6, LabyrinthMap.tileSize * 10)),
+          showCollisionArea: true,
+          cameraConfig: CameraConfig(
+            zoom: 0.3,
+            sizeMovementWindow: Vector2(
+              LabyrinthMap.tileSize * 100,
+              LabyrinthMap.tileSize * 100,
+            ),
           ),
+        );
+      },
     );
   }
 }

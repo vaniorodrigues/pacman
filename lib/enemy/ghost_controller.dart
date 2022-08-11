@@ -1,15 +1,15 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:pacman/main.dart';
+import 'package:pacman/map/map.dart';
 
 import 'ghost.dart';
 
-class GoblinController extends StateController<Goblin> {
-  double attack = 20;
+class GhostController extends StateController<Ghost> {
+  double attack = 100;
   bool _seePlayerToAttackMelee = false;
   bool enableBehaviors = true;
 
   @override
-  void update(double dt, Goblin component) {
+  void update(double dt, Ghost component) {
     if (!enableBehaviors) return;
 
     if (!gameRef.sceneBuilderStatus.isRunning) {
@@ -22,11 +22,16 @@ class GoblinController extends StateController<Goblin> {
         observed: () {
           _seePlayerToAttackMelee = true;
         },
-        radiusVision: tileSize * 10,
+        radiusVision: LabyrinthMap.tileSize * 8,
       );
 
       if (!_seePlayerToAttackMelee) {
-        component.moveTo(component.position);
+        component.runRandomMovement(
+          dt,
+          speed: component.speed / 2,
+          maxDistance: (LabyrinthMap.tileSize * 40).toInt(),
+          timeKeepStopped: 0000,
+        );
       }
     }
   }

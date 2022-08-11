@@ -1,6 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 
-class RedGhostSpriteSheet {
+class GhostSpriteSheet {
   static Future<SpriteAnimation> get idleRight => SpriteAnimation.load(
         "ghost/red_right.png",
         SpriteAnimationData.sequenced(
@@ -40,7 +40,7 @@ class RedGhostSpriteSheet {
   static Future<SpriteAnimation> get runRight => SpriteAnimation.load(
         "ghost/red_right.png",
         SpriteAnimationData.sequenced(
-          amount: 6,
+          amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
         ),
@@ -49,7 +49,7 @@ class RedGhostSpriteSheet {
   static Future<SpriteAnimation> get runLeft => SpriteAnimation.load(
         "ghost/red_left.png",
         SpriteAnimationData.sequenced(
-          amount: 6,
+          amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
         ),

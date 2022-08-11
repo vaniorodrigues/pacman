@@ -1,110 +1,65 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:pacman/enemy/common_sprite_sheet.dart';
+import 'package:pacman/map/map.dart';
 
-import 'package:flutter/widgets.dart';
+class Food extends GameDecoration with Sensor {
+  final double points;
+  double _lifeDistributed = 0;
 
-class Food extends GameDecoration {
-  bool _observedPlayer = false;
-
-  late TextPaint _textConfig;
-  Food(Vector2 position)
-      : super(
-          size: Vector2(8, 8),
+  Food(Vector2 position, {required this.points})
+      : super.withSprite(
+          sprite: CommonSpriteSheet.foodSprite,
           position: position,
-        ) {
-    _textConfig = TextPaint(
-      style: TextStyle(
-        color: Color(0xFFFFFFFF),
-        fontSize: width / 2,
-      ),
-    );
+          size: Vector2.all(LabyrinthMap.tileSize / 4),
+        );
+
+  @override
+  void onContact(GameComponent component) {
+    if (component is Player) {
+      // add provider.read of points and add function to add points.
+      // in the layout one provider.watch to rebuild when this is value changes.
+      generateValues(
+        Duration(seconds: 1),
+        onChange: (value) {
+          if (_lifeDistributed < points) {
+            double newLife = points * value - _lifeDistributed;
+            _lifeDistributed += newLife;
+            component.addLife(newLife);
+          }
+        },
+      );
+
+      removeFromParent();
+    }
   }
+}
 
-//   @override
-//   void update(double dt) {
-//     if (gameRef.player != null) {
-//       this.seeComponent(
-//         gameRef.player!,
-//         observed: (player) {
-//           if (!_observedPlayer) {
-//             _observedPlayer = true;
-//             _showEmote();
-//           }
-//         },
-//         notObserved: () {
-//           _observedPlayer = false;
-//         },
-//         radiusVision: DungeonMap.tileSize,
-//       );
-//     }
-//     super.update(dt);
-//   }
+class PotionLife extends GameDecoration with Sensor {
+  final double life;
+  double _lifeDistributed = 0;
 
-//   @override
-//   void render(Canvas canvas) {
-//     super.render(canvas);
-//     if (_observedPlayer) {
-//       _textConfig.render(
-//         canvas,
-//         'Touch me !!',
-//         Vector2(x - width / 1.5, center.y - (height + 5)),
-//       );
-//     }
-//   }
+  PotionLife(Vector2 position, this.life)
+      : super.withSprite(
+          sprite: CommonSpriteSheet.potionLifeSprite,
+          position: position,
+          size: Vector2.all(LabyrinthMap.tileSize * 0.5),
+        );
 
-//   @override
-//   void onTap() {
-//     if (_observedPlayer) {
-//       _addPotions();
-//       removeFromParent();
-//     }
-//   }
+  @override
+  void onContact(GameComponent collision) {
+    if (collision is Player) {
+      generateValues(
+        Duration(seconds: 1),
+        onChange: (value) {
+          if (_lifeDistributed < life) {
+            double newLife = life * value - _lifeDistributed;
+            _lifeDistributed += newLife;
+            collision.addLife(newLife);
+          }
+        },
+      );
 
-//   @override
-//   void onTapCancel() {}
-
-//   void _addPotions() {
-//     gameRef.add(
-//       PotionLife(
-//         Vector2(
-//           position.translate(width * 2, 0).x,
-//           position.y - height * 2,
-//         ),
-//         30,
-//       ),
-//     );
-
-//     gameRef.add(
-//       PotionLife(
-//         Vector2(
-//           position.translate(width * 2, 0).x,
-//           position.y + height * 2,
-//         ),
-//         30,
-//       ),
-//     );
-
-//     _addSmokeExplosion(position.translate(width * 2, 0));
-//     _addSmokeExplosion(position.translate(width * 2, height * 2));
-//   }
-
-//   void _addSmokeExplosion(Vector2 position) {
-//     gameRef.add(
-//       AnimatedObjectOnce(
-//         animation: CommonSpriteSheet.smokeExplosion,
-//         position: position,
-//         size: Vector2.all(DungeonMap.tileSize),
-//       ),
-//     );
-//   }
-
-//   void _showEmote() {
-//     gameRef.add(
-//       AnimatedFollowerObject(
-//         animation: CommonSpriteSheet.emote,
-//         target: this,
-//         size: size,
-//         positionFromTarget: size / -2,
-//       ),
-//     );
-//   }
+      removeFromParent();
+    }
+  }
 }

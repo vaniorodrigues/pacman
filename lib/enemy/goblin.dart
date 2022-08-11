@@ -5,7 +5,7 @@ import 'package:pacman/enemy/common_sprite_sheet.dart';
 import 'package:pacman/enemy/enemy_sprite_sheet.dart';
 import 'package:pacman/main.dart';
 
-import 'ghost_controller.dart';
+import 'goblin_controller.dart';
 
 class Goblin extends SimpleEnemy
     with
