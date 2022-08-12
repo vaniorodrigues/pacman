@@ -85,7 +85,34 @@ class GhostSpriteSheet {
         ),
       );
 
-  SimpleDirectionAnimation get simpleDirectionAnimation => SimpleDirectionAnimation(
+  Future<SpriteAnimation> get scared => SpriteAnimation.load(
+        "ghost/scared.png",
+        SpriteAnimationData.sequenced(
+          amount: 4,
+          stepTime: 0.5,
+          textureSize: Vector2(16, 16),
+          // texturePosition: Vector2(0, 0),
+        ),
+      );
+  bool isPoweredUp = false;
+  void setIspoweredUp(bool isPoweredUp) {
+    isPoweredUp = isPoweredUp;
+  }
+
+  SimpleDirectionAnimation get simpleDirectionAnimation {
+    return SimpleDirectionAnimation(
+      idleRight: (!isPoweredUp) ? idleRight : scared,
+      idleLeft: (!isPoweredUp) ? idleLeft : scared,
+      idleUp: (!isPoweredUp) ? idleUp : scared,
+      idleDown: (!isPoweredUp) ? idleDown : scared,
+      runRight: (!isPoweredUp) ? runRight : scared,
+      runLeft: (!isPoweredUp) ? runLeft : scared,
+      runUp: (!isPoweredUp) ? runUp : scared,
+      runDown: (!isPoweredUp) ? runDown : scared,
+    );
+  }
+
+  SimpleDirectionAnimation get powerUpDirectionAnimation => SimpleDirectionAnimation(
         idleRight: idleRight,
         idleLeft: idleLeft,
         idleUp: idleUp,

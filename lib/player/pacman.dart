@@ -13,22 +13,27 @@ import 'package:provider/provider.dart';
 class Pacman extends SimplePlayer with ObjectCollision {
   Pacman(Vector2 position)
       : super(
-          size: Vector2.all(LabyrinthMap.pacmanSize),
+          size: Vector2.all(PacmanMap.pacmanSize),
           position: position,
           animation: PacmanSpriteSheet.simpleDirectionAnimation,
-          speed: LabyrinthMap.pacmanSpeed,
+          speed: PacmanMap.pacmanSpeed,
           life: 100,
         ) {
     setupCollision(
       CollisionConfig(
         collisions: [
           CollisionArea.circle(
-            radius: LabyrinthMap.tileSize * 0.75,
-            align: Vector2.all(LabyrinthMap.tileSize * 0.1),
+            radius: PacmanMap.tileSize * 0.75,
+            align: Vector2.all(PacmanMap.tileSize * 0.1),
           ),
         ],
       ),
     );
+  }
+
+  bool isPowerUP = false;
+  void setpowerUp(bool value) {
+    isPowerUP = value;
   }
 
   @override
@@ -41,6 +46,11 @@ class Pacman extends SimplePlayer with ObjectCollision {
     );
   }
 
+  void onReceiveDamage(double damage) {
+    debugPrint('Pacman receive damage: $damage');
+    position = PacmanMap.pacmanSpawnPosition;
+  }
+
   @override
   void die() async {
     super.die();
@@ -49,15 +59,27 @@ class Pacman extends SimplePlayer with ObjectCollision {
       AnimatedObjectOnce(
         animation: PacmanSpriteSheet.death,
         position: position,
-        size: Vector2.all(LabyrinthMap.tileSize * 1.2),
+        size: Vector2.all(PacmanMap.tileSize * 1.2),
       ),
     );
     if (context.read<PlayerScore>().playerLives <= 0) {
       removeFromParent();
     }
-    await Future.delayed(Duration(milliseconds: 100), () {
-      position = LabyrinthMap.pacmanSpawnPosition;
-      // gameRef.add(Pacman(position));
+    await Future.delayed(Duration(milliseconds: 2400), () {
+      position = PacmanMap.pacmanSpawnPosition;
     });
+  }
+
+  /// This method is used to check if this component can receive damage from any attacker.
+  /// It will be called everytime a [receiveDamage] is called, before it runs [removeLife]
+  @override
+  bool checkCanReceiveDamage(AttackFromEnum attacker, double damage, from, {bool isPowerUP = false}) {
+    bool shouldReceive =
+        super.checkCanReceiveDamage(attacker, damage, from) && !context.read<PlayerScore>().isPoweredUP;
+    if (shouldReceive) {
+      position = PacmanMap.pacmanSpawnPosition;
+      context.read<PlayerScore>().removeLifeFromPlayer();
+    }
+    return shouldReceive;
   }
 }

@@ -12,7 +12,7 @@ class PacmanScoreInterface extends StatelessWidget {
 
     return Row(
       children: [
-        SizedBox(width: LabyrinthMap.tileSize),
+        SizedBox(width: PacmanMap.tileSize),
         Column(
           children: [
             Text(
@@ -23,7 +23,7 @@ class PacmanScoreInterface extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: LabyrinthMap.tileSize / 4),
+            SizedBox(height: PacmanMap.tileSize / 4),
             Text(
               'Lives: ${playerScore.playerLives}',
               style: TextStyle(

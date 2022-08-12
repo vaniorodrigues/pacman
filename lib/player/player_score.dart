@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class PlayerScore extends ChangeNotifier {
   int score;
   int playerLives;
+  bool isPoweredUP = true;
 
   PlayerScore({
     required this.playerLives,
@@ -16,6 +17,11 @@ class PlayerScore extends ChangeNotifier {
 
   void removeLifeFromPlayer() {
     playerLives--;
+    notifyListeners();
+  }
+
+  void setIsPoweredUp(bool value) {
+    isPoweredUP = value;
     notifyListeners();
   }
 }

@@ -11,7 +11,7 @@ class Food extends GameDecoration with Sensor {
       : super.withSprite(
           sprite: CommonSpriteSheet.foodSprite,
           position: position,
-          size: Vector2.all(LabyrinthMap.tileSize / 4),
+          size: Vector2.all(PacmanMap.tileSize / 4),
         );
 
   @override

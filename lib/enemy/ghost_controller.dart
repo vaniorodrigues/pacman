@@ -4,7 +4,7 @@ import 'package:pacman/game/map.dart';
 import 'ghost.dart';
 
 class GhostController extends StateController<Ghost> {
-  double attack = 100;
+  double attack = 1;
   bool _seePlayerToAttackMelee = false;
   bool enableBehaviors = true;
 
@@ -22,7 +22,8 @@ class GhostController extends StateController<Ghost> {
         observed: () {
           _seePlayerToAttackMelee = true;
         },
-        radiusVision: LabyrinthMap.tileSize * 4,
+        radiusVision: PacmanMap.tileSize * 0,
+        // FIXME: This is a workaround to avoid the ghost to attack the player when the player is powered up.
       );
 
       if (!_seePlayerToAttackMelee) {
@@ -30,8 +31,8 @@ class GhostController extends StateController<Ghost> {
           component.runRandomMovement(
             dt,
             speed: component.speed / 2,
-            maxDistance: (LabyrinthMap.tileSize * 100).toInt(),
-            timeKeepStopped: 2000,
+            maxDistance: (PacmanMap.tileSize * 100).toInt(),
+            timeKeepStopped: 000,
           );
         });
       }
