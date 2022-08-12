@@ -21,7 +21,7 @@ class GhostSpriteSheet {
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
-          texturePosition: Vector2(0, 2 * 16),
+          texturePosition: Vector2(2 * 16, 0),
         ),
       );
 
@@ -31,7 +31,7 @@ class GhostSpriteSheet {
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
-          texturePosition: Vector2(0, 4 * 16),
+          texturePosition: Vector2(4 * 16, 0),
         ),
       );
 
@@ -41,7 +41,7 @@ class GhostSpriteSheet {
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
-          texturePosition: Vector2(0, 6 * 16),
+          texturePosition: Vector2(6 * 16, 0),
         ),
       );
 
@@ -61,7 +61,7 @@ class GhostSpriteSheet {
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
-          texturePosition: Vector2(0, 2 * 16),
+          texturePosition: Vector2(2 * 16, 0),
         ),
       );
 
@@ -71,7 +71,7 @@ class GhostSpriteSheet {
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
-          texturePosition: Vector2(0, 4 * 16),
+          texturePosition: Vector2(4 * 16, 0),
         ),
       );
 
@@ -81,7 +81,7 @@ class GhostSpriteSheet {
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
-          texturePosition: Vector2(0, 6 * 16),
+          texturePosition: Vector2(6 * 16, 0),
         ),
       );
 

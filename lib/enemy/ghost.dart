@@ -16,7 +16,7 @@ class Ghost extends SimpleEnemy
       : super(
           animation: GhostSpriteSheet(ghostColor).simpleDirectionAnimation,
           position: position,
-          size: Vector2.all(LabyrinthMap.tileSize * 1.2),
+          size: Vector2.all(LabyrinthMap.ghostSize),
           speed: 120,
           life: 100,
         ) {
@@ -24,8 +24,8 @@ class Ghost extends SimpleEnemy
       CollisionConfig(
         collisions: [
           CollisionArea.rectangle(
-            size: Vector2.all(LabyrinthMap.tileSize * 0.9),
-            align: Vector2.all(LabyrinthMap.tileSize * 0.3),
+            size: Vector2.all(LabyrinthMap.ghostSize * 0.8),
+            align: Vector2.all(LabyrinthMap.tileSize * 0.2),
           ),
         ],
       ),

@@ -7,7 +7,7 @@ import 'package:pacman/enemy/ghost.dart';
 class LabyrinthMap {
   static double tileSize = 16;
   static double pacmanSize = tileSize * 2;
-  static double ghostSize = tileSize * 1.5;
+  static double ghostSize = tileSize * 2;
   static double pacmanSpeed = tileSize * 7;
   static double ghostSpeed = tileSize * 8;
   static double pacmanRespawnTime = 1;

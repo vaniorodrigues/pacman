@@ -9,7 +9,7 @@ class GhostController extends StateController<Ghost> {
   bool enableBehaviors = true;
 
   @override
-  void update(double dt, Ghost component) {
+  void update(double dt, Ghost component) async {
     if (!enableBehaviors) return;
 
     if (!gameRef.sceneBuilderStatus.isRunning) {
@@ -22,16 +22,18 @@ class GhostController extends StateController<Ghost> {
         observed: () {
           _seePlayerToAttackMelee = true;
         },
-        radiusVision: LabyrinthMap.tileSize * 8,
+        radiusVision: LabyrinthMap.tileSize * 4,
       );
 
       if (!_seePlayerToAttackMelee) {
-        component.runRandomMovement(
-          dt,
-          speed: component.speed / 2,
-          maxDistance: (LabyrinthMap.tileSize * 40).toInt(),
-          timeKeepStopped: 0000,
-        );
+        await Future.delayed(Duration(seconds: 3), () {
+          component.runRandomMovement(
+            dt,
+            speed: component.speed / 2,
+            maxDistance: (LabyrinthMap.tileSize * 100).toInt(),
+            timeKeepStopped: 2000,
+          );
+        });
       }
     }
   }

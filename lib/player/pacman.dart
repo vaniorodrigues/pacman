@@ -42,7 +42,7 @@ class Pacman extends SimplePlayer with ObjectCollision {
   }
 
   @override
-  void die() {
+  void die() async {
     super.die();
     context.read<PlayerScore>().removeLifeFromPlayer();
     gameRef.add(
@@ -55,7 +55,7 @@ class Pacman extends SimplePlayer with ObjectCollision {
     if (context.read<PlayerScore>().playerLives <= 0) {
       removeFromParent();
     }
-    Future.delayed(Duration(milliseconds: 100), () {
+    await Future.delayed(Duration(milliseconds: 100), () {
       position = LabyrinthMap.pacmanSpawnPosition;
       // gameRef.add(Pacman(position));
     });
