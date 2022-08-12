@@ -8,10 +8,13 @@ import 'package:provider/provider.dart';
 class PacmanScoreInterface extends StatelessWidget {
   const PacmanScoreInterface({Key? key}) : super(key: key);
 
+  final int winningScore = 10 * 244 + 100 * 4;
+
   @override
   Widget build(BuildContext context) {
     final PlayerScore playerScore = context.watch<PlayerScore>();
     bool isGameOver = playerScore.playerLives == 0;
+    bool isWinningScore = playerScore.score >= winningScore;
 
     return Column(
       children: [
@@ -19,16 +22,21 @@ class PacmanScoreInterface extends StatelessWidget {
         Row(
           children: [
             SizedBox(width: PacmanMap.tileSize * 6),
-            (isGameOver)
-                ? Center(
-                    child: Column(
-                      children: [
-                        _RetroText('GAME OVER!', fontSize: 18),
-                        _RetroText('Total score: ${playerScore.score}', fontSize: 16)
-                      ],
-                    ),
+            (isWinningScore)
+                ? Column(
+                    children: [
+                      _RetroText('YOU WON!!!', fontSize: 18),
+                      _RetroText('Total score: ${playerScore.score}', fontSize: 16)
+                    ],
                   )
-                : _RetroText('${playerScore.score}', fontSize: 30),
+                : (isGameOver)
+                    ? Column(
+                        children: [
+                          _RetroText('GAME OVER!', fontSize: 18),
+                          _RetroText('Total score: ${playerScore.score}', fontSize: 16)
+                        ],
+                      )
+                    : _RetroText('${playerScore.score}', fontSize: 30),
             SizedBox(width: PacmanMap.tileSize * 2),
             // row of image assets for lives
             for (int i = 0; i < playerScore.playerLives - 1; i++)
@@ -37,8 +45,6 @@ class PacmanScoreInterface extends StatelessWidget {
                 // width: 100,
                 // height: 100,
                 scale: 0.5,
-                // width: PacmanMap.tileSize,
-                // height: PacmanMap.tileSize,
               ),
           ],
         ),

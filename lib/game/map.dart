@@ -7,6 +7,7 @@ import 'package:pacman/elements/power_up_food.dart';
 import 'package:pacman/enemy/ghost.dart';
 
 class PacmanMap {
+  static bool isLowSpec = true;
   static double tileSize = 16;
   static double pacmanSize = tileSize * 2;
   static double ghostSize = tileSize * 1.8;
@@ -26,6 +27,8 @@ class PacmanMap {
     Vector2(PacmanMap.tileSize * 18, PacmanMap.tileSize * 15),
   ];
 
+  static String foodAmount = (isLowSpec) ? 'less_food' : 'food';
+
   static TiledWorldMap map() {
     return TiledWorldMap(
       'pacman/pac_map.json',
@@ -35,7 +38,7 @@ class PacmanMap {
         'blue': (properties) => Ghost(properties.position, ghostColor: 'blue'),
         'pink': (properties) => Ghost(properties.position, ghostColor: 'pink'),
         'orange': (properties) => Ghost(properties.position, ghostColor: 'orange'),
-        'food': (properties) => Food(properties.position, points: foodScore),
+        foodAmount: (properties) => Food(properties.position, points: foodScore),
         'powerUp': (properties) => PowerUpFood(properties.position, points: powerUpFoodScore),
       },
     );

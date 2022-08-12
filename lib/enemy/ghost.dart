@@ -1,5 +1,4 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:flutter/material.dart';
 import 'package:pacman/elements/power_up_checker.dart';
 import 'package:pacman/enemy/ghost_scared_animation.dart';
 

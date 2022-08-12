@@ -26,16 +26,6 @@ class Pacman extends SimplePlayer with ObjectCollision {
     );
   }
 
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-    drawDefaultLifeBar(
-      canvas,
-      borderRadius: BorderRadius.circular(5),
-      borderWidth: 2,
-    );
-  }
-
   /// Pacman will only receive damage if the [PowerUPChecker.isPoweredUP] is false, if so, he will also be placed at the [PacmanMap.pacmanRespawnPosition].
   @override
   void receiveDamage(

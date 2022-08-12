@@ -15,13 +15,11 @@ class Game extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('Rebuilding game');
     return LayoutBuilder(
       builder: (context, constraints) {
         PacmanMap.tileSize = min(constraints.maxHeight, constraints.maxWidth) / 35;
-
         return BonfireTiledWidget(
-          showCollisionArea: true,
+          // showCollisionArea: true,
           joystick: Joystick(
             keyboardConfig: KeyboardConfig(
               keyboardDirectionalType: KeyboardDirectionalType.wasdAndArrows,
