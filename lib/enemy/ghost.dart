@@ -1,5 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
+import 'package:pacman/elements/power_up_checker.dart';
+import 'package:pacman/enemy/ghost_scared_animation.dart';
 
 import 'package:pacman/enemy/ghost_sprite_sheet.dart';
 import 'package:pacman/enemy/ghost_controller.dart';
@@ -36,9 +38,6 @@ class Ghost extends SimpleEnemy
   }
 
   final String ghostColor;
-  final GhostSpriteSheet ghostSpriteSheet = GhostSpriteSheet('red');
-  // SimpleDirectionAnimation _animation = GhostSpriteSheet('red').simpleDirectionAnimation;
-  // SimpleDirectionAnimation get animation => _animation;
 
   @override
   void render(Canvas canvas) {
@@ -50,44 +49,18 @@ class Ghost extends SimpleEnemy
     );
   }
 
-//overrides the animation when powerUp
-  // @override
-  void changeAnimation(Ghost component, bool isPoweredUp) async {
-    if (isPoweredUp) {
-      debugPrint('ghost is RUNNING fot its life up $ghostColor');
-
-      gameRef.add(
-        AnimatedFollowerObject(
-            animation: GhostSpriteSheet(ghostColor).scared,
-            target: this,
-            size: Vector2.all(PacmanMap.ghostSize),
-            positionFromTarget: Vector2.all(0),
-            loopAnimation: true),
-      );
-    } else {
-      debugPrint('ghost is hunting up $ghostColor');
-      // component.animation = GhostSpriteSheet(ghostColor).simpleDirectionAnimation;
-    }
+  void scaredAnimation(Ghost component) async {
+    gameRef.add(
+      GhostScaredAnimationOverlay(
+        animation: GhostSpriteSheet(ghostColor).scared,
+        target: this,
+        size: Vector2.all(PacmanMap.ghostSize),
+        positionFromTarget: Vector2.all(0),
+        loop: true,
+      ),
+    );
+    // anim.loopAnimation = true;
   }
-
-  // @override
-  void onReceiveDamage(double damage) {
-    debugPrint('Ghost receive damage: $damage');
-    // component.animation = GhostSpriteSheet(ghostColor).powerUpDirectionAnimation;
-    position = PacmanMap.ghostRespawnPosition;
-  }
-
-  // @override
-  // void die() async {
-  //   super.die();
-  //   context.read<PlayerScore>().removeLifeFromPlayer();
-  //   gameRef.add(
-  //     AnimatedObjectOnce(
-  //       animation: GhostSpriteSheet(ghostColor).death,
-  //     ),
-  //   );
-  // }
-// }
 
   @override
   void die() {
@@ -95,17 +68,18 @@ class Ghost extends SimpleEnemy
     removeFromParent();
   }
 
+  /// The execAttack defines who will take the damage from the attack (pacman or ghost), the decision is made based on the [PowerUPChecker.isPoweredUP].
+  /// If the [PowerUPChecker.isPoweredUP] is true, the ghost will take the damage from the pacman, otherwise the pacman will take the damage from the ghosts.
   void execAttack(double damage) {
-    // debugPrint('Executing attack');
+    debugPrint('GHOST TRYING TO Executing attack');
     if (gameRef.player != null && gameRef.player?.isDead == true) return;
-    if (context.read<PlayerScore>().isPoweredUP == true) {
-      position = PacmanMap.ghostRespawnPosition;
+    if (PowerUPChecker().isPoweredUP == true) {
+      debugPrint('GHOST moved to ghostRespawnPosition ');
+      position = PacmanMap.ghostRespawnPositions[1];
     } else {
-      simpleAttackMelee(
-        size: Vector2.all(width),
-        damage: damage,
-        interval: 1,
-      );
+      debugPrint('GHOST ATTACKED SUCESSFULLY');
+      simpleAttackMelee(size: Vector2.all(width), damage: damage, interval: 1);
+      controller.moveGhots();
     }
   }
 
@@ -113,16 +87,6 @@ class Ghost extends SimpleEnemy
   void removeLife(double life) {
     showDamage(life);
     super.removeLife(life);
-  }
-
-  @override
-  bool checkCanReceiveDamage(AttackFromEnum attacker, double damage, from) {
-    bool shouldReceive = super.checkCanReceiveDamage(attacker, damage, from) && context.read<PlayerScore>().isPoweredUP;
-    if (shouldReceive) {
-      position = PacmanMap.pacmanSpawnPosition;
-      context.read<PlayerScore>().addPointsToPlayerScore(400);
-    }
-    return shouldReceive;
   }
 
   @override

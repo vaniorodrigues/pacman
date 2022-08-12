@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:pacman/elements/power_up_checker.dart';
 import 'package:pacman/enemy/ghost.dart';
-import 'package:pacman/enemy/ghost_sprite_sheet.dart';
 import 'package:pacman/player/pacman.dart';
 import 'package:pacman/player/player_score.dart';
 import 'package:provider/provider.dart';
@@ -21,25 +20,15 @@ class PowerUpFood extends GameDecoration with Sensor {
   @override
   void onContact(GameComponent component) async {
     if (component is Pacman) {
+      removeFromParent();
       context.read<PlayerScore>().addPointsToPlayerScore(points);
-      // removeFromParent();
-
-      // change ghosts animation to be scared
-      final enemies = gameRef.visibleEnemies();
-      for (var enemy in enemies) {
+      PowerUPChecker().setIsPoweredUp(true);
+      for (var enemy in gameRef.visibleEnemies()) {
         if (enemy is Ghost) {
-          enemy.changeAnimation(enemy, true);
+          enemy.scaredAnimation(enemy);
         }
       }
-
-      await Future.delayed(Duration(seconds: 10), () {
-        for (var enemy in enemies) {
-          if (enemy is Ghost) {
-            debugPrint('IM TRYING TO FIZ THE GHOST');
-            enemy.changeAnimation(enemy, false);
-          }
-        }
-      });
+      await Future.delayed(PacmanMap.powerUpDuration, () => PowerUPChecker().setIsPoweredUp(false));
     }
   }
 }

@@ -16,8 +16,6 @@ class Game extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPrint('Rebuilding game');
-
-    // context.watch<PlayerScore>().playerLives;
     return LayoutBuilder(
       builder: (context, constraints) {
         PacmanMap.tileSize = min(constraints.maxHeight, constraints.maxWidth) / 35;
@@ -30,7 +28,7 @@ class Game extends StatelessWidget {
           ), // required
           map: PacmanMap.map(),
           player: Pacman(PacmanMap.pacmanSpawnPosition),
-          // showCollisionArea: true,
+          showCollisionArea: true,
           cameraConfig: CameraConfig(
             sizeMovementWindow: Vector2(
               PacmanMap.tileSize * 100,

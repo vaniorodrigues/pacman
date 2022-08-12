@@ -9,19 +9,26 @@ import 'package:pacman/enemy/ghost.dart';
 class PacmanMap {
   static double tileSize = 16;
   static double pacmanSize = tileSize * 2;
-  static double ghostSize = tileSize * 2;
-  static double pacmanSpeed = tileSize * 7;
-  static double ghostSpeed = tileSize * 8;
+  static double ghostSize = tileSize * 1.8;
+  static double pacmanSpeed = tileSize * 5;
+  static double ghostSpeed = tileSize * 4;
   static double pacmanRespawnTime = 1;
   static double ghostRespawnTime = 1;
+  static Duration powerUpDuration = Duration(seconds: 2);
   static Vector2 pacmanSpawnPosition = Vector2(
-    PacmanMap.tileSize * 5.5,
-    PacmanMap.tileSize * 10.5,
+    PacmanMap.tileSize * 18,
+    PacmanMap.tileSize * 19.75,
   );
-  static Vector2 ghostRespawnPosition = Vector2(
-    PacmanMap.tileSize * 5.5,
-    PacmanMap.tileSize * 10.5,
-  );
+  static List<Vector2> ghostRespawnPositions = [
+    Vector2(PacmanMap.tileSize * 16, PacmanMap.tileSize * 17),
+    Vector2(PacmanMap.tileSize * 18, PacmanMap.tileSize * 17),
+    Vector2(PacmanMap.tileSize * 20, PacmanMap.tileSize * 17),
+    Vector2(PacmanMap.tileSize * 18, PacmanMap.tileSize * 15),
+  ];
+  // static Vector2 ghostRespawnPosition = Vector2(
+  //   PacmanMap.tileSize * 6.5,
+  //   PacmanMap.tileSize * 10.5,
+  // );
 
   static TiledWorldMap map() {
     return TiledWorldMap(

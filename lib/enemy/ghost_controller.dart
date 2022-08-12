@@ -4,7 +4,7 @@ import 'package:pacman/game/map.dart';
 import 'ghost.dart';
 
 class GhostController extends StateController<Ghost> {
-  double attack = 1;
+  double attackDamage = 1;
   bool _seePlayerToAttackMelee = false;
   bool enableBehaviors = true;
 
@@ -17,24 +17,36 @@ class GhostController extends StateController<Ghost> {
 
       component.seeAndMoveToPlayer(
         closePlayer: (player) {
-          component.execAttack(attack);
+          component.execAttack(attackDamage);
         },
         observed: () {
           _seePlayerToAttackMelee = true;
         },
-        radiusVision: PacmanMap.tileSize * 0,
-        // FIXME: This is a workaround to avoid the ghost to attack the player when the player is powered up.
+        radiusVision: PacmanMap.tileSize * 1.5,
+
+        // Fixme: This is a workaround to avoid the ghost to attack the player when the player is powered up.
       );
 
       if (!_seePlayerToAttackMelee) {
-        await Future.delayed(Duration(seconds: 3), () {
+        await Future.delayed(Duration(seconds: 2), () {
           component.runRandomMovement(
             dt,
-            speed: component.speed / 2,
+            speed: component.speed,
             maxDistance: (PacmanMap.tileSize * 100).toInt(),
             timeKeepStopped: 000,
           );
         });
+      }
+    }
+  }
+
+  // Moves all ghots to the respawn position everytime the pacman loses a life.
+  void moveGhots() {
+    int i = 0;
+    for (var enemy in gameRef.visibleEnemies()) {
+      if (enemy is Ghost) {
+        enemy.position = PacmanMap.ghostRespawnPositions[i];
+        i++;
       }
     }
   }
