@@ -22,9 +22,7 @@ class GhostController extends StateController<Ghost> {
         observed: () {
           _seePlayerToAttackMelee = true;
         },
-        radiusVision: PacmanMap.tileSize * 1.5,
-
-        // Fixme: This is a workaround to avoid the ghost to attack the player when the player is powered up.
+        radiusVision: PacmanMap.tileSize * 1,
       );
 
       if (!_seePlayerToAttackMelee) {
@@ -41,10 +39,10 @@ class GhostController extends StateController<Ghost> {
   }
 
   // Moves all ghots to the respawn position everytime the pacman loses a life.
-  void moveGhots() {
+  void moveGhotsToStartPosition() {
     int i = 0;
     for (var enemy in gameRef.visibleEnemies()) {
-      if (enemy is Ghost) {
+      if (enemy is Ghost && enemy.life > 0) {
         enemy.position = PacmanMap.ghostRespawnPositions[i];
         i++;
       }

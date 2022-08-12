@@ -21,6 +21,7 @@ class Game extends StatelessWidget {
         PacmanMap.tileSize = min(constraints.maxHeight, constraints.maxWidth) / 35;
 
         return BonfireTiledWidget(
+          showCollisionArea: true,
           joystick: Joystick(
             keyboardConfig: KeyboardConfig(
               keyboardDirectionalType: KeyboardDirectionalType.wasdAndArrows,
@@ -28,7 +29,6 @@ class Game extends StatelessWidget {
           ), // required
           map: PacmanMap.map(),
           player: Pacman(PacmanMap.pacmanSpawnPosition),
-          showCollisionArea: true,
           cameraConfig: CameraConfig(
             sizeMovementWindow: Vector2(
               PacmanMap.tileSize * 100,

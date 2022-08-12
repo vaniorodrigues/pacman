@@ -11,10 +11,10 @@ class PowerUpFood extends GameDecoration with Sensor {
   final int points;
 
   PowerUpFood(Vector2 position, {required this.points})
-      : super.withSprite(
-          sprite: CommonSpriteSheet.foodSprite,
+      : super.withAnimation(
+          animation: CommonSpriteSheet.powerUpFoodSprite,
           position: position,
-          size: Vector2.all(PacmanMap.tileSize / 1),
+          size: Vector2.all(PacmanMap.tileSize),
         );
 
   @override
@@ -25,7 +25,7 @@ class PowerUpFood extends GameDecoration with Sensor {
       PowerUPChecker().setIsPoweredUp(true);
       for (var enemy in gameRef.visibleEnemies()) {
         if (enemy is Ghost) {
-          enemy.scaredAnimation(enemy);
+          enemy.scaredAnimationOverlay(enemy);
         }
       }
       await Future.delayed(PacmanMap.powerUpDuration, () => PowerUPChecker().setIsPoweredUp(false));

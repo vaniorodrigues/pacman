@@ -39,17 +39,7 @@ class Ghost extends SimpleEnemy
 
   final String ghostColor;
 
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-    drawDefaultLifeBar(
-      canvas,
-      borderRadius: BorderRadius.circular(5),
-      borderWidth: 2,
-    );
-  }
-
-  void scaredAnimation(Ghost component) async {
+  void scaredAnimationOverlay(Ghost component) async {
     gameRef.add(
       GhostScaredAnimationOverlay(
         animation: GhostSpriteSheet(ghostColor).scared,
@@ -62,31 +52,17 @@ class Ghost extends SimpleEnemy
     // anim.loopAnimation = true;
   }
 
-  @override
-  void die() {
-    super.die();
-    removeFromParent();
-  }
-
   /// The execAttack defines who will take the damage from the attack (pacman or ghost), the decision is made based on the [PowerUPChecker.isPoweredUP].
   /// If the [PowerUPChecker.isPoweredUP] is true, the ghost will take the damage from the pacman, otherwise the pacman will take the damage from the ghosts.
   void execAttack(double damage) {
-    debugPrint('GHOST TRYING TO Executing attack');
     if (gameRef.player != null && gameRef.player?.isDead == true) return;
     if (PowerUPChecker().isPoweredUP == true) {
-      debugPrint('GHOST moved to ghostRespawnPosition ');
       position = PacmanMap.ghostRespawnPositions[1];
     } else {
-      debugPrint('GHOST ATTACKED SUCESSFULLY');
       simpleAttackMelee(size: Vector2.all(width), damage: damage, interval: 1);
-      controller.moveGhots();
+      controller.moveGhotsToStartPosition();
+      context.read<PlayerScore>().removeLifeFromPlayer();
     }
-  }
-
-  @override
-  void removeLife(double life) {
-    showDamage(life);
-    super.removeLife(life);
   }
 
   @override

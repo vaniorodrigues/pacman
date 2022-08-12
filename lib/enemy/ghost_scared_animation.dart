@@ -3,9 +3,8 @@ import 'dart:async';
 import 'package:bonfire/bonfire.dart';
 import 'package:bonfire/util/assets_loader.dart';
 import 'package:pacman/game/map.dart';
-import 'package:pacman/player/player_score.dart';
-import 'package:provider/provider.dart';
 
+/// The scared animation of the ghost, it overlays the basic animation for a fixed time defined by [PacmanMap.powerUpDuration].
 class GhostScaredAnimationOverlay extends AnimatedFollowerObject {
   GhostScaredAnimationOverlay({
     required FutureOr<SpriteAnimation> animation,
@@ -24,7 +23,6 @@ class GhostScaredAnimationOverlay extends AnimatedFollowerObject {
     loader?.add(AssetToLoad(animation, (value) => this.animation = value));
   }
 
-  // @override
   final bool loop;
   @override
   Future<void> update(double dt) async {
@@ -32,7 +30,6 @@ class GhostScaredAnimationOverlay extends AnimatedFollowerObject {
     if (loop) {
       await Future.delayed(PacmanMap.powerUpDuration, () {
         removeFromParent();
-        // context.read<PlayerScore>().setIsPoweredUp(false);
       });
     }
   }

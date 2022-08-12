@@ -10,7 +10,7 @@ class CommonSpriteSheet {
         "powerUp.png",
         SpriteAnimationData.sequenced(
           amount: 2,
-          stepTime: 0.1,
+          stepTime: 0.25,
           textureSize: Vector2(8, 8),
         ),
       );
