@@ -28,7 +28,7 @@ class Game extends StatelessWidget {
             ),
           ), // required
           map: PacmanMap.map(),
-          player: Pacman(PacmanMap.pacmanSpawnPosition),
+          player: Pacman(PacmanMap.pacmanRespawnPosition),
           cameraConfig: CameraConfig(
             sizeMovementWindow: Vector2(
               PacmanMap.tileSize * 100,

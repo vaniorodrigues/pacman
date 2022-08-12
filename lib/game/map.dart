@@ -15,7 +15,7 @@ class PacmanMap {
   static int foodScore = 10;
   static int powerUpFoodScore = 1000;
   static Duration powerUpDuration = Duration(seconds: 10);
-  static Vector2 pacmanSpawnPosition = Vector2(
+  static Vector2 pacmanRespawnPosition = Vector2(
     PacmanMap.tileSize * 18,
     PacmanMap.tileSize * 19.75,
   );

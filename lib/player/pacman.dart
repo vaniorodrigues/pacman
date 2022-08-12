@@ -36,11 +36,21 @@ class Pacman extends SimplePlayer with ObjectCollision {
     );
   }
 
-  void onReceiveDamage(double damage) {
-    debugPrint('Pacman receive damage: $damage');
-    position = PacmanMap.pacmanSpawnPosition;
+  /// Pacman will only receive damage if the [PowerUPChecker.isPoweredUP] is false, if so, he will also be placed at the [PacmanMap.pacmanRespawnPosition].
+  @override
+  void receiveDamage(
+    AttackFromEnum attacker,
+    double damage,
+    dynamic identify,
+  ) {
+    super.receiveDamage(attacker, damage, identify);
+    if (checkCanReceiveDamage(attacker, damage, identify) && PowerUPChecker().isPoweredUP == false) {
+      removeLife(damage);
+      position = PacmanMap.pacmanRespawnPosition;
+    }
   }
 
+  /// Game Over if the [Pacman.life] is 0.
   @override
   void die() async {
     super.die();
@@ -53,20 +63,4 @@ class Pacman extends SimplePlayer with ObjectCollision {
       ),
     );
   }
-
-  @override
-  void receiveDamage(
-    AttackFromEnum attacker,
-    double damage,
-    dynamic identify,
-  ) {
-    super.receiveDamage(attacker, damage, identify);
-    if (checkCanReceiveDamage(attacker, damage, identify) && PowerUPChecker().isPoweredUP == false) {
-      // sleep(Duration(milliseconds: 3000));
-      removeLife(damage);
-      position = PacmanMap.pacmanSpawnPosition;
-    }
-  }
-
-  double get pacmanLife => life;
 }
