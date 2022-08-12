@@ -4,6 +4,7 @@ import 'package:pacman/elements/power_up_checker.dart';
 import 'package:pacman/game/pacman_map.dart';
 import 'package:pacman/player/pacman_sprite_sheet.dart';
 
+/// Defines the players class.
 class Pacman extends SimplePlayer with ObjectCollision {
   Pacman(Vector2 position)
       : super(
@@ -33,7 +34,7 @@ class Pacman extends SimplePlayer with ObjectCollision {
     dynamic identify,
   ) {
     super.receiveDamage(attacker, damage, identify);
-    if (checkCanReceiveDamage(attacker, damage, identify) && PowerUPChecker().isPoweredUP == false) {
+    if (checkCanReceiveDamage(attacker, damage, identify) && PowerUPChecker().isPoweredUP == false && life > 1) {
       removeLife(damage);
       position = PacmanMap.pacmanRespawnPosition;
     }

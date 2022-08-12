@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 
+/// All animations of the player.
 class PacmanSpriteSheet {
   static const double stepTimeMovement = 0.1;
 

@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:pacman/enemy/ghost_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:pacman/game/game.dart';
-import 'package:pacman/player/player_score.dart';
+import 'package:pacman/interface/player_score.dart';
+
+/// selects the ammount of food to be spawned in the game.
+const bool isLowSpec = true;
 
 void main() {
   BonfireInjector().putFactory((i) => GhostController());
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Center(child: Game()),
+      home: Game(),
     );
   }
 }

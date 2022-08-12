@@ -7,7 +7,7 @@ import 'package:pacman/enemy/ghost_controller.dart';
 import 'package:pacman/game/pacman_map.dart';
 import 'package:provider/provider.dart';
 
-import '../player/player_score.dart';
+import '../interface/player_score.dart';
 
 class Ghost extends SimpleEnemy
     with
@@ -28,8 +28,8 @@ class Ghost extends SimpleEnemy
       CollisionConfig(
         collisions: [
           CollisionArea.rectangle(
-            size: Vector2.all(PacmanMap.ghostSize * 0.8),
-            align: Vector2.all(PacmanMap.tileSize * 0.2),
+            size: Vector2.all(PacmanMap.ghostSize * 0.7),
+            align: Vector2.all(PacmanMap.tileSize * 0.25),
           ),
         ],
       ),

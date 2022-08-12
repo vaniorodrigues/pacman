@@ -1,5 +1,3 @@
-// import 'dart:math';
-
 import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
@@ -8,6 +6,7 @@ import 'package:pacman/interface/pacman_score_interface.dart';
 import 'package:pacman/game/pacman_map.dart';
 import 'package:pacman/player/pacman.dart';
 
+/// Main fuction of the game.
 class Game extends StatelessWidget {
   const Game({
     Key? key,

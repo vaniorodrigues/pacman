@@ -1,7 +1,9 @@
-# pacman
+# The Pacman
+flutter build web; rm docs; mkdir docs; cp web/* docs/
 
-To deploy to gihub.io - 
+To deploy to on gihub.io - (if your github pages setting is set to build from ./docs/) 
 `sh 
+flutter build web
 rm docs 
 mkdir docs
 cp web/* docs/

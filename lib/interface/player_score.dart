@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// Provider of that controlles the score of the game and the lives of the player.
+/// If [playersLives] != 0 is game over.
 class PlayerScore extends ChangeNotifier {
   int score;
   int playerLives;

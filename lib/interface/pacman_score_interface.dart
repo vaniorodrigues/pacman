@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pacman/game/pacman_map.dart';
-import 'package:pacman/player/player_score.dart';
 import 'package:provider/provider.dart';
 
+import 'package:pacman/game/pacman_map.dart';
+import 'package:pacman/interface/player_score.dart';
+import 'package:pacman/main.dart';
+
 /// Interface for the score of the player, updated by the provider [PlayerScore].
+/// It is located in the top left corner of the screen.
 class PacmanScoreInterface extends StatelessWidget {
   const PacmanScoreInterface({Key? key}) : super(key: key);
 
-  final int winningScore = 10 * 244 + 100 * 4;
-
   @override
   Widget build(BuildContext context) {
+    final int winningScore;
+    (isLowSpec) ? winningScore = 10 * 56 + 1000 * 4 : winningScore = 10 * 244 + 1000 * 4;
+
     final PlayerScore playerScore = context.watch<PlayerScore>();
     bool isGameOver = playerScore.playerLives == 0;
     bool isWinningScore = playerScore.score >= winningScore;

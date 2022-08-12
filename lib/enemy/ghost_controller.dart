@@ -3,6 +3,7 @@ import 'package:pacman/game/pacman_map.dart';
 
 import 'ghost.dart';
 
+/// Controlles the ghots attacks and moviment.
 class GhostController extends StateController<Ghost> {
   double attackDamage = 1;
   bool _seePlayerToAttackMelee = false;

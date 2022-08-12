@@ -1,13 +1,15 @@
 import 'dart:ui';
 
-import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
+import 'package:bonfire/bonfire.dart';
+
 import 'package:pacman/elements/food.dart';
 import 'package:pacman/elements/power_up_food.dart';
 import 'package:pacman/enemy/ghost.dart';
+import 'package:pacman/main.dart';
 
+// Generates the labyrinth of the game.
 class PacmanMap {
-  static bool isLowSpec = false;
   static double tileSize = 16;
   static double pacmanSize = tileSize * 2;
   static double ghostSize = tileSize * 1.8;
