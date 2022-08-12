@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bonfire/bonfire.dart';
 import 'package:bonfire/util/assets_loader.dart';
-import 'package:pacman/game/map.dart';
+import 'package:pacman/game/pacman_map.dart';
 
 /// The scared animation of the ghost, it overlays the basic animation for a fixed time defined by [PacmanMap.powerUpDuration].
 class GhostScaredAnimationOverlay extends AnimatedFollowerObject {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pacman/game/map.dart';
+import 'package:pacman/game/pacman_map.dart';
 import 'package:pacman/player/player_score.dart';
 import 'package:provider/provider.dart';
 

@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:pacman/game/map.dart';
+import 'package:pacman/game/pacman_map.dart';
 
 import 'ghost.dart';
 

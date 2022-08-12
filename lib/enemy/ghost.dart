@@ -4,7 +4,7 @@ import 'package:pacman/enemy/ghost_scared_animation.dart';
 
 import 'package:pacman/enemy/ghost_sprite_sheet.dart';
 import 'package:pacman/enemy/ghost_controller.dart';
-import 'package:pacman/game/map.dart';
+import 'package:pacman/game/pacman_map.dart';
 import 'package:provider/provider.dart';
 
 import '../player/player_score.dart';

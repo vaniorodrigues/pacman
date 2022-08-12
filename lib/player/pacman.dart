@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:bonfire/bonfire.dart';
 
 import 'package:pacman/elements/power_up_checker.dart';
-import 'package:pacman/game/map.dart';
+import 'package:pacman/game/pacman_map.dart';
 import 'package:pacman/player/pacman_sprite_sheet.dart';
 
 class Pacman extends SimplePlayer with ObjectCollision {

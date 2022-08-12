@@ -5,7 +5,7 @@ import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:pacman/interface/pacman_score_interface.dart';
-import 'package:pacman/game/map.dart';
+import 'package:pacman/game/pacman_map.dart';
 import 'package:pacman/player/pacman.dart';
 
 class Game extends StatelessWidget {
