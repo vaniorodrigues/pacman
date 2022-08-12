@@ -1,11 +1,13 @@
 import 'package:bonfire/bonfire.dart';
 
 class PacmanSpriteSheet {
+  static const double stepTimeMovement = 0.1;
+
   static get idleRight => SpriteAnimation.load(
         'player/pacman.png',
         SpriteAnimationData.sequenced(
           amount: 1,
-          stepTime: 0.1,
+          stepTime: stepTimeMovement,
           textureSize: Vector2(16, 16),
         ),
       );
@@ -13,7 +15,7 @@ class PacmanSpriteSheet {
         'player/pacman.png',
         SpriteAnimationData.sequenced(
           amount: 2,
-          stepTime: 0.1,
+          stepTime: stepTimeMovement,
           textureSize: Vector2(16, 16),
         ),
       );
@@ -22,7 +24,7 @@ class PacmanSpriteSheet {
         'player/pacman.png',
         SpriteAnimationData.sequenced(
           amount: 1,
-          stepTime: 0.1,
+          stepTime: stepTimeMovement,
           textureSize: Vector2(16, 16),
           texturePosition: Vector2(0, 1 * 16),
         ),
@@ -31,7 +33,7 @@ class PacmanSpriteSheet {
         'player/pacman.png',
         SpriteAnimationData.sequenced(
           amount: 2,
-          stepTime: 0.1,
+          stepTime: stepTimeMovement,
           textureSize: Vector2(16, 16),
           texturePosition: Vector2(0, 1 * 16),
         ),
@@ -41,7 +43,7 @@ class PacmanSpriteSheet {
         'player/pacman.png',
         SpriteAnimationData.sequenced(
           amount: 1,
-          stepTime: 0.1,
+          stepTime: stepTimeMovement,
           textureSize: Vector2(16, 16),
           texturePosition: Vector2(0, 2 * 16),
         ),
@@ -51,7 +53,7 @@ class PacmanSpriteSheet {
         'player/pacman.png',
         SpriteAnimationData.sequenced(
           amount: 2,
-          stepTime: 0.1,
+          stepTime: stepTimeMovement,
           textureSize: Vector2(16, 16),
           texturePosition: Vector2(0, 2 * 16),
         ),
@@ -61,7 +63,7 @@ class PacmanSpriteSheet {
         'player/pacman.png',
         SpriteAnimationData.sequenced(
           amount: 1,
-          stepTime: 0.1,
+          stepTime: stepTimeMovement,
           textureSize: Vector2(16, 16),
           texturePosition: Vector2(0, 3 * 16),
         ),
@@ -71,7 +73,7 @@ class PacmanSpriteSheet {
         'player/pacman.png',
         SpriteAnimationData.sequenced(
           amount: 2,
-          stepTime: 0.1,
+          stepTime: stepTimeMovement,
           textureSize: Vector2(16, 16),
           texturePosition: Vector2(0, 3 * 16),
         ),
@@ -81,7 +83,7 @@ class PacmanSpriteSheet {
         'player/pacman_death.png',
         SpriteAnimationData.sequenced(
           amount: 12,
-          stepTime: 0.1,
+          stepTime: 0.2,
           textureSize: Vector2(16, 16),
         ),
       );

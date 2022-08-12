@@ -1,79 +1,91 @@
 import 'package:bonfire/bonfire.dart';
 
 class GhostSpriteSheet {
-  static Future<SpriteAnimation> get idleRight => SpriteAnimation.load(
-        "ghost/red_right.png",
+  final String ghostColor;
+
+  GhostSpriteSheet(this.ghostColor);
+
+  Future<SpriteAnimation> get idleRight => SpriteAnimation.load(
+        "ghost/$ghostColor.png",
         SpriteAnimationData.sequenced(
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
+          texturePosition: Vector2(0, 0),
         ),
       );
 
-  static Future<SpriteAnimation> get idleLeft => SpriteAnimation.load(
-        "ghost/red_left.png",
+  Future<SpriteAnimation> get idleLeft => SpriteAnimation.load(
+        "ghost/$ghostColor.png",
         SpriteAnimationData.sequenced(
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
+          texturePosition: Vector2(0, 2 * 16),
         ),
       );
 
-  static Future<SpriteAnimation> get idleUp => SpriteAnimation.load(
-        "ghost/red_up.png",
+  Future<SpriteAnimation> get idleUp => SpriteAnimation.load(
+        "ghost/$ghostColor.png",
         SpriteAnimationData.sequenced(
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
+          texturePosition: Vector2(0, 4 * 16),
         ),
       );
 
-  static Future<SpriteAnimation> get idleDown => SpriteAnimation.load(
-        "ghost/red_down.png",
+  Future<SpriteAnimation> get idleDown => SpriteAnimation.load(
+        "ghost/$ghostColor.png",
         SpriteAnimationData.sequenced(
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
+          texturePosition: Vector2(0, 6 * 16),
         ),
       );
 
-  static Future<SpriteAnimation> get runRight => SpriteAnimation.load(
-        "ghost/red_right.png",
+  Future<SpriteAnimation> get runRight => SpriteAnimation.load(
+        "ghost/$ghostColor.png",
         SpriteAnimationData.sequenced(
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
+          texturePosition: Vector2(0, 0),
         ),
       );
 
-  static Future<SpriteAnimation> get runLeft => SpriteAnimation.load(
-        "ghost/red_left.png",
+  Future<SpriteAnimation> get runLeft => SpriteAnimation.load(
+        "ghost/$ghostColor.png",
         SpriteAnimationData.sequenced(
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
+          texturePosition: Vector2(0, 2 * 16),
         ),
       );
 
-  static Future<SpriteAnimation> get runUp => SpriteAnimation.load(
-        "ghost/red_up.png",
+  Future<SpriteAnimation> get runUp => SpriteAnimation.load(
+        "ghost/$ghostColor.png",
         SpriteAnimationData.sequenced(
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
+          texturePosition: Vector2(0, 4 * 16),
         ),
       );
 
-  static Future<SpriteAnimation> get runDown => SpriteAnimation.load(
-        "ghost/red_down.png",
+  Future<SpriteAnimation> get runDown => SpriteAnimation.load(
+        "ghost/$ghostColor.png",
         SpriteAnimationData.sequenced(
           amount: 2,
           stepTime: 0.1,
           textureSize: Vector2(16, 16),
+          texturePosition: Vector2(0, 6 * 16),
         ),
       );
 
-  static SimpleDirectionAnimation get simpleDirectionAnimation => SimpleDirectionAnimation(
+  SimpleDirectionAnimation get simpleDirectionAnimation => SimpleDirectionAnimation(
         idleRight: idleRight,
         idleLeft: idleLeft,
         idleUp: idleUp,

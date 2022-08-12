@@ -1,10 +1,9 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 
-import 'package:pacman/enemy/common_sprite_sheet.dart';
 import 'package:pacman/enemy/ghost_sprite_sheet.dart';
 import 'package:pacman/enemy/ghost_controller.dart';
-import 'package:pacman/map/map.dart';
+import 'package:pacman/game/map.dart';
 
 class Ghost extends SimpleEnemy
     with
@@ -13,9 +12,9 @@ class Ghost extends SimpleEnemy
         MovementByJoystick,
         AutomaticRandomMovement,
         UseStateController<GhostController> {
-  Ghost(Vector2 position)
+  Ghost(Vector2 position, {required this.ghostColor})
       : super(
-          animation: GhostSpriteSheet.simpleDirectionAnimation,
+          animation: GhostSpriteSheet(ghostColor).simpleDirectionAnimation,
           position: position,
           size: Vector2.all(LabyrinthMap.tileSize * 1.2),
           speed: 120,
@@ -33,6 +32,8 @@ class Ghost extends SimpleEnemy
     );
   }
 
+  final String ghostColor;
+
   @override
   void render(Canvas canvas) {
     super.render(canvas);
@@ -46,13 +47,13 @@ class Ghost extends SimpleEnemy
   @override
   void die() {
     super.die();
-    gameRef.add(
-      AnimatedObjectOnce(
-        animation: CommonSpriteSheet.smokeExplosion,
-        position: position,
-        size: Vector2.all(LabyrinthMap.tileSize),
-      ),
-    );
+    // gameRef.add(
+    //   // AnimatedObjectOnce(
+    //   //   animation: CommonSpriteSheet.smokeExplosion,
+    //   //   position: position,
+    //   //   size: Vector2.all(LabyrinthMap.tileSize),
+    //   // ),
+    // );
     removeFromParent();
   }
 

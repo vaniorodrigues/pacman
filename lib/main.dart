@@ -1,12 +1,9 @@
 import 'package:bonfire/state_manager/bonfire_injector.dart';
 import 'package:flutter/material.dart';
 import 'package:pacman/enemy/ghost_controller.dart';
-import 'package:pacman/player/player_score.dart';
 import 'package:provider/provider.dart';
-
-import 'map/game.dart';
-
-const double tileSize = 16;
+import 'package:pacman/game/game.dart';
+import 'package:pacman/player/player_score.dart';
 
 void main() {
   BonfireInjector().putFactory((i) => GhostController());
@@ -29,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Game(),
+      home: Center(child: Game()),
     );
   }
 }
