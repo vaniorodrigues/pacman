@@ -55581,7 +55581,7 @@ A.a7S.prototype={
 $1(a){return new A.iR(3,$.b4())},
 $S:371}
 A.Cu.prototype={
-a1(a,b){return new A.tV(new A.Bl(null),"Flutter Demo",A.aeV(null,B.pR),null)}}
+a1(a,b){return new A.tV(new A.Bl(null),"Pacman",A.aeV(null,B.pR),null)}}
 A.us.prototype={
 xN(a,b,c){var s,r=this
 r.Jy(a,b,c)
