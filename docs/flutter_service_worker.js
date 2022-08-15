@@ -3,7 +3,7 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "assets/AssetManifest.json": "0dabf63f7d44fbbfc3b68156bfbafeb8",
+  "assets/AssetManifest.json": "b1cff1776b7ffb22c61161a862b16277",
 "assets/assets/images/food.png": "00abdd082a39999018885904426e299f",
 "assets/assets/images/ghost/blue.png": "c31535eac1ea6dc2e056eb6e7c7e9944",
 "assets/assets/images/ghost/dead.png": "c4151e3fef1c7ac4865984d3f1f68aba",
@@ -15,7 +15,9 @@ const RESOURCES = {
 "assets/assets/images/ghost/scared.png": "2c73bd3aaa6c428c2cc5b7ae5cb67ec6",
 "assets/assets/images/pacman/pacman_spritesheet.json": "9e4e537546cda72f070d2520db668cf2",
 "assets/assets/images/pacman/pacman_spritesheet.png": "3b0edc90f020280cbd45e20046138b1f",
-"assets/assets/images/pacman/pac_map.json": "7d2605205b04d0c33fe54b5da235a5b7",
+"assets/assets/images/pacman/pacman_spritesheet2.json": "4c39a385ff454476b841b331af38ef43",
+"assets/assets/images/pacman/pac_map.json": "101e826b23d11d3e9687fd3bf92781fa",
+"assets/assets/images/pacman_sprite.png": "67c61d8c85584c93961ceab604b00293",
 "assets/assets/images/player/pacman.png": "00b9e1d913459e264f5e0ee41f8acced",
 "assets/assets/images/player/pacman_death.png": "ed7985ba2994e8da6bb451d060879fd6",
 "assets/assets/images/player/pacman_idle.png": "9302b0f82d42be43e5db96455bb08826",
@@ -30,19 +32,14 @@ const RESOURCES = {
 "assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
 "assets/NOTICES": "5c95e7df46198ce89249af9d70410da0",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
-"canvaskit/canvaskit.js": "c2b4e5f3d7a3d82aed024e7249a78487",
-"canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba",
-"canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
-"canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
 "favicon.png": "8b7a7f1dadcb6dabf2db3df3fd36f0ea",
-"flutter.js": "eb2682e33f25cd8f1fc59011497c35f8",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "e994a1f91fab22c73234a22062ecd7e8",
-"/": "e994a1f91fab22c73234a22062ecd7e8",
-"main.dart.js": "fc63e4eb796b1ea0dec11cc719ed459f",
+"index.html": "e5d4383b28501257b4e53518dacb2a98",
+"/": "e5d4383b28501257b4e53518dacb2a98",
+"main.dart.js": "39206f2598f0bea61c05a7a25b3c73d1",
 "manifest.json": "efb19d69bd0b551819b713357f9fccfc",
 "version.json": "765d559b498189c6f4f8f7cf3571babf"
 };
