@@ -117,23 +117,9 @@ class JoystickWoutIdle extends JoystickController {
       }
 
       if (_currentKeyboardKeys.isEmpty) {
-        _sendOneDirection(_previousKey); // maybe we dont eve need to send the previous key
-        // joystickChangeDirectional(
-        //   JoystickDirectionalEvent(
-        //     directional: JoystickMoveDirectional.IDLE,
-        //     intensity: 0.0,
-        //     radAngle: 0.0,
-        //   ),
-        // );
+        _sendOneDirection(_previousKey);
       } else {
-        // if (_currentKeyboardKeys.length == 1) {
         _sendOneDirection(_currentKeyboardKeys.last);
-        // } else {
-        // _sendTwoDirection(
-        //   _currentKeyboardKeys.first,
-        //   _currentKeyboardKeys[1],
-        // );
-        // }
       }
     } else {
       if (event is RawKeyDownEvent) {
