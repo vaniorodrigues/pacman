@@ -1,0 +1,14 @@
+{ "columns":19,
+ "image":"..\/pacman_sprite.png",
+ "imageheight":939,
+ "imagewidth":936,
+ "margin":0,
+ "name":"pacman_sprite",
+ "spacing":0,
+ "tilecount":361,
+ "tiledversion":"1.9.0",
+ "tileheight":48,
+ "tilewidth":48,
+ "type":"tileset",
+ "version":"1.8"
+}

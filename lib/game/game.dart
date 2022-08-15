@@ -4,6 +4,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:pacman/interface/pacman_score_interface.dart';
 import 'package:pacman/game/pacman_map.dart';
+import 'package:pacman/joystick/joystick_wout_idle.dart';
 import 'package:pacman/player/pacman.dart';
 
 /// Main fuction of the game.
@@ -19,7 +20,7 @@ class Game extends StatelessWidget {
         PacmanMap.tileSize = min(constraints.maxHeight, constraints.maxWidth) / 35;
         return BonfireTiledWidget(
           // showCollisionArea: true,
-          joystick: Joystick(
+          joystick: JoystickWoutIdle(
             keyboardConfig: KeyboardConfig(
               keyboardDirectionalType: KeyboardDirectionalType.wasdAndArrows,
             ),
