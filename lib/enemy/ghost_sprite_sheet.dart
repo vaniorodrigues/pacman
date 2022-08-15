@@ -1,5 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 
+// TODO: Get better looking sprites with transparant background.
+
 class GhostSpriteSheet {
   final String ghostColor;
 
